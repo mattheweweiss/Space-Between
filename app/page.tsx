@@ -1,11 +1,10 @@
-import Map from './components/map'
+import MapComponent from './components/Map'
 
 export default function Page() {
     
     return (
         <>
-            <h1>Hello, Next.js!</h1>
-            <Map></Map>
+            <MapComponent mapboxAccessToken={process.env.MAPBOX_ACCESS_TOKEN} />
         </>
     )
 
