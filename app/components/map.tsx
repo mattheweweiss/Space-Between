@@ -34,10 +34,11 @@ const MapComponent : React.FC<MapProps> = ({mapboxAccessToken}) => {
             // Creates map
             map = new mapboxgl.Map({
                 container: mapContainer.current,
-                style: 'mapbox://styles/mapbox/streets-v12',
+                style: 'mapbox://styles/mapbox/dark-v11',
                 center: [-77.0369, 38.9072],
                 zoom: 5,
-                accessToken: mapboxAccessToken
+                accessToken: mapboxAccessToken,
+                attributionControl: false
             });
         }
 
