@@ -41,6 +41,7 @@ const SearchBar : React.FC<SearchBarProps> = ({ mapboxAccessToken }) => {
             })
             // Sets results
             .then ((data) => {
+                console.log(data);
                 setResults(data.features);
             });
 

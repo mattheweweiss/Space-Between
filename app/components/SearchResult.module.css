@@ -1,4 +1,7 @@
 .search-result-container {
+    display: flex;
+    gap: 0.5em;
+
     width: 300px;
 
     padding: 0.25em;
@@ -16,4 +19,14 @@
 
 .search-result-container:hover {
     background-color: #ededed;
+}
+
+
+.search-result, .search-result-context {
+    margin: 0;
+}
+
+
+.search-result-context {
+    font-size: 0.8em;
 }

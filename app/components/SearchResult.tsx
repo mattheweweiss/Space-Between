@@ -6,7 +6,7 @@ import { centerMap } from './Map';
 
 // Interface for search result component props
 interface SearchResultProps {
-    result: object;
+    result: object
 }
 
 
@@ -27,7 +27,14 @@ const SearchResult : React.FC<SearchResultProps> = ({ result }) => {
                 centerMap(result.properties.coordinates);
                 updateSearchBarText();
             }}>
-                {result.properties.name}
+                
+                <p className={styles["search-result"]}>{result.properties.name}</p>
+                {
+                    result.properties.place_formatted
+                    ? <p className={styles["search-result-context"]}>{result.properties.place_formatted}</p>
+                    : <></>
+                }
+                
             </div>
         </>
     );
