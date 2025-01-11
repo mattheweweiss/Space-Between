@@ -2,6 +2,8 @@
 
 import styles from './Map.module.css';
 
+import SearchBar from './SearchBar';
+
 import { useEffect, useRef } from 'react';
 import mapboxgl, { Map } from 'mapbox-gl';
 
@@ -17,7 +19,7 @@ interface MapProps {
 
 
 // Creates map component
-const MapComponent : React.FC<MapProps> = ({mapboxAccessToken}) => {
+const MapComponent : React.FC<MapProps> = ({ mapboxAccessToken }) => {
 
     // Initializes map container and map as null
     const mapContainer = useRef<HTMLDivElement>(null)
@@ -48,7 +50,9 @@ const MapComponent : React.FC<MapProps> = ({mapboxAccessToken}) => {
 
     // Returns map container
     return (
-        <div ref={mapContainer} id="map-container" className={styles["map-container"]}></div>
+        <div ref={mapContainer} id="map-container" className={styles["map-container"]}>
+            <SearchBar mapboxAccessToken={mapboxAccessToken}/>
+        </div>
     );
 
 
