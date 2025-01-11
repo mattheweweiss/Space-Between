@@ -22,10 +22,10 @@ const SearchBar : React.FC<SearchBarProps> = ({ mapboxAccessToken }) => {
 
 
     // Makes Mapbox Geocoding API call every time the search value changes
-    function updateSearch() {
+    function updateSearch(update: Object) {
 
         // Gets search
-        const search = document.getElementById("search-bar").value;
+        const search = update.target.value;
 
         
         // Fetches data from Mapbox Geocoding API
@@ -41,7 +41,6 @@ const SearchBar : React.FC<SearchBarProps> = ({ mapboxAccessToken }) => {
             })
             // Sets results
             .then ((data) => {
-                console.log(data);
                 setResults(data.features);
             });
 
@@ -52,7 +51,7 @@ const SearchBar : React.FC<SearchBarProps> = ({ mapboxAccessToken }) => {
     return (
         <>
             <div className={styles["search-bar-container"]}>
-                <input id="search-bar" className={styles["search-bar"]} onChange={updateSearch} />
+                <input className={styles["search-bar"]} onChange={updateSearch.bind(this)} />
                 {
                     results.length > 0 ? <SearchResults results={results} /> : <></>
                 }

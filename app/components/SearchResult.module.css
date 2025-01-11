@@ -1,5 +1,6 @@
 .search-result-container {
     display: flex;
+    align-items: center;
     gap: 0.5em;
 
     width: 300px;

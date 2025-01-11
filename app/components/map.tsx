@@ -17,7 +17,7 @@ let map : Map | null = null;
 
 
 // Centers map on selected location
-export function centerMap(coordinates) {
+export function centerMap(coordinates: Object) {
 
     map.flyTo({
         center: [coordinates.longitude, coordinates.latitude]
@@ -65,9 +65,15 @@ const MapComponent : React.FC<MapProps> = ({ mapboxAccessToken }) => {
 
     // Returns map container
     return (
-        <div ref={mapContainer} id="map-container" className={styles["map-container"]}>
-            <SearchBar mapboxAccessToken={mapboxAccessToken}/>
-        </div>
+        <>
+            <div>
+                <div ref={mapContainer} id="map-container" className={styles["map-container"]}></div>
+                <div className={styles["search-bars-container"]}>
+                    <SearchBar mapboxAccessToken={mapboxAccessToken} />
+                    <SearchBar mapboxAccessToken={mapboxAccessToken} />
+                </div>
+            </div>
+        </>
     );
 
 
