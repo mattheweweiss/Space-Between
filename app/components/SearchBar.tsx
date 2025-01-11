@@ -17,19 +17,15 @@ interface SearchBarProps {
 const SearchBar : React.FC<SearchBarProps> = ({ mapboxAccessToken }) => {
 
 
-    const [search, setSearch] = useState("");
     const [results, setResults] = useState([]);
-
-
-    // Updates search, recalling Mapbox Geocoding API
-    function updateSearch() {
-        setSearch(document.getElementById("search-bar").value);
-    }
 
 
 
     // Makes Mapbox Geocoding API call every time the search value changes
-    useEffect(() => {
+    function updateSearch() {
+
+        // Gets search
+        const search = document.getElementById("search-bar").value;
 
         
         // Fetches data from Mapbox Geocoding API
@@ -37,7 +33,7 @@ const SearchBar : React.FC<SearchBarProps> = ({ mapboxAccessToken }) => {
             .then((response) => {
                 
                 if (!response.ok) {
-                    throw new Error('Could not search')
+                    throw new Error('Could not search');
                 } else {
                     return response.json();
                 }
@@ -48,9 +44,10 @@ const SearchBar : React.FC<SearchBarProps> = ({ mapboxAccessToken }) => {
                 setResults(data.features);
             });
 
-    }, [search]);
+    };
 
 
+    // Returns search bar container
     return (
         <>
             <div className={styles["search-bar-container"]}>
@@ -60,7 +57,7 @@ const SearchBar : React.FC<SearchBarProps> = ({ mapboxAccessToken }) => {
                 }
             </div>
         </>
-    )
+    );
 
 
 }

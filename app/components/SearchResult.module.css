@@ -1,6 +1,19 @@
 .search-result-container {
-    height: 20px;
     width: 300px;
 
+    padding: 0.25em;
+    box-shadow: 1px 1px 2px #6d6d6d;
+
     background-color: #ffffff;
+
+    font-size: 1.2em;
+
+    cursor: pointer;
+
+    transition: 200ms ease-in-out;
+}
+
+
+.search-result-container:hover {
+    background-color: #ededed;
 }

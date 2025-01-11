@@ -11,6 +11,22 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 
 
+// Initializes map as null
+let map : Map | null = null;
+
+
+
+// Centers map on selected location
+export function centerMap(coordinates) {
+
+    map.flyTo({
+        center: [coordinates.longitude, coordinates.latitude]
+    });
+
+}
+
+
+
 // Interface for map component props
 interface MapProps {
     mapboxAccessToken: string;
@@ -22,8 +38,7 @@ interface MapProps {
 const MapComponent : React.FC<MapProps> = ({ mapboxAccessToken }) => {
 
     // Initializes map container and map as null
-    const mapContainer = useRef<HTMLDivElement>(null)
-    let map : Map | null = null;
+    const mapContainer = useRef<HTMLDivElement>(null);
 
 
 

@@ -20,13 +20,13 @@ const SearchResults : React.FC<SearchResultsProps> = ({ results }) => {
         <>
             <div className={styles["search-results-container"]}>
                 {
-                    results.map((result: any) : any => {
-                        return <SearchResult result={result} />
+                    results.map((result: any, index: Number) : any => {
+                        return <SearchResult key={`result${index}`} result={result} />
                     })
                 }
             </div>
         </>
-    )
+    );
 
 
 }
