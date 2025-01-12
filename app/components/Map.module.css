@@ -1,27 +1,16 @@
-.map-container-container {
-    position: relative;
+.page-container {
+    display: flex;
+
+    width: 100%;
+
+    background-color: #000000;
 }
 
 
 .map-container {
-    position: relative;
-
-    height: 600px;
-    width: 96%;
-
-    margin: 2em auto;
-    border: none;
-}
-
-
-.search-bars-container {
-    display: flex;
-    justify-content: space-evenly;
-
-    position: absolute;
-    top: 20%;
-
+    height: 650px;
     width: 100%;
 
     margin: 1em;
+    border: none;
 }

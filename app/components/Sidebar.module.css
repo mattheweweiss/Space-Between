@@ -1,0 +1,35 @@
+.sidebar-container {
+    height: 100%;
+
+    margin: 1em;
+}
+
+
+.sidebar-title {
+    width: 350px;
+
+    text-align: center;
+    color: #3a3a3a;
+}
+
+
+.sidebar {
+    height: 100%;
+}
+
+
+.search-bar-group-container:nth-child(1) {
+    position: absolute;
+    top: 10%;
+}
+
+
+.search-bar-group-container:nth-child(2) {
+    position: absolute;
+    top: 55%;
+}
+
+
+.search-bar-title {
+    color: #3a3a3a;
+}

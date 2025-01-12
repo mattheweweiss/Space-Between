@@ -1,0 +1,16 @@
+html {
+    height: 100%;
+
+    margin: 0;
+
+    background-color: #000000;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.page-container {
+    display: flex;
+
+    height: 100%;
+}

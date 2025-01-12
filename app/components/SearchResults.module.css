@@ -1,9 +1,8 @@
 .search-results-container {
     overflow-x: hidden;
 
-    border-bottom: 1px solid #383838;
+    border: 1px solid #383838;
     border-radius: 5px;
-    box-shadow: 1px 1px 4px #4a4a4a;
 
     color: #383838;
 }

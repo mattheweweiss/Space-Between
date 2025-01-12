@@ -66,12 +66,8 @@ const MapComponent : React.FC<MapProps> = ({ mapboxAccessToken }) => {
     // Returns map container
     return (
         <>
-            <div>
+            <div className={styles["page-container"]}>
                 <div ref={mapContainer} id="map-container" className={styles["map-container"]}></div>
-                <div className={styles["search-bars-container"]}>
-                    <SearchBar mapboxAccessToken={mapboxAccessToken} />
-                    <SearchBar mapboxAccessToken={mapboxAccessToken} />
-                </div>
             </div>
         </>
     );

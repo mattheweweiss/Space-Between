@@ -5,10 +5,8 @@
 
     width: 300px;
 
+    border-bottom: 1px solid #383838;
     padding: 0.25em;
-    box-shadow: 1px 1px 2px #6d6d6d;
-
-    background-color: #ffffff;
 
     font-size: 1.2em;
 
@@ -19,7 +17,12 @@
 
 
 .search-result-container:hover {
-    background-color: #ededed;
+    background-color: #ededed10;
+}
+
+
+.search-result-container:last-child {
+    border-bottom: none;
 }
 
 
