@@ -8,15 +8,17 @@ import { useState, useEffect } from 'react';
 
 // Interface for search bar component props
 interface SearchBarProps {
+    id: string;
     mapboxAccessToken: string;
 }
 
 
 
 // Creates search bar component
-const SearchBar : React.FC<SearchBarProps> = ({ mapboxAccessToken }) => {
+const SearchBar : React.FC<SearchBarProps> = ({ id, mapboxAccessToken }) => {
 
 
+    // State for results
     const [results, setResults] = useState([]);
 
 
@@ -51,7 +53,7 @@ const SearchBar : React.FC<SearchBarProps> = ({ mapboxAccessToken }) => {
     return (
         <>
             <div className={styles["search-bar-container"]}>
-                <input className={styles["search-bar"]} onChange={updateSearch.bind(this)} />
+                <input id={id} className={`search-bar ${styles["search-bar"]}`} onChange={updateSearch.bind(this)} />
                 {
                     results.length > 0 ? <SearchResults results={results} /> : <></>
                 }

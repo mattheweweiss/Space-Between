@@ -1,8 +1,9 @@
 import styles from './SearchResult.module.css';
 
+import { LocationContext } from './Sidebar';
 import { centerMap } from './Map';
 
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useContext } from 'react';
 
 
 
@@ -16,27 +17,33 @@ interface SearchResultProps {
 // Creates search result component
 const SearchResult : React.FC<SearchResultProps> = ({ result }) => {
 
-    
-    // Updates search bar text with selected search
-    function updateSearchBarText(event: SyntheticEvent<HTMLElement>) {
+
+    // Getting addLocation function via context
+    const { addLocation } = useContext(LocationContext);
+
+
+
+    // Finds and returns search bar input element
+    function getSearchBar(event: SyntheticEvent<HTMLElement>) {
 
         var target = event.target as HTMLElement;
         
         // Finds appropriate search bar input from event
         // Needs different pathing depending on if action was with the p element or div element
         if (target.tagName == "P") {
-
-            let searchBar = target.parentElement.parentElement.previousElementSibling as HTMLInputElement;
-            searchBar.value = result.properties.name;
-        
+            return target.parentElement.parentElement.previousElementSibling as HTMLInputElement;
         } else if (target.tagName == "DIV") {
-
-            let searchBar = target.parentElement.previousElementSibling as HTMLInputElement;
-            searchBar.value = result.properties.name;
-        
+            return target.parentElement.previousElementSibling as HTMLInputElement;
         }
 
     }
+
+    
+    // Updates search bar text with selected search
+    function updateSearchBar(searchBar: HTMLInputElement) {
+        searchBar.value = result.properties.name;
+    }
+
 
 
     // Returns search result container
@@ -44,7 +51,8 @@ const SearchResult : React.FC<SearchResultProps> = ({ result }) => {
         <>
             <div className={styles["search-result-container"]} onClick={(event) => {
                 centerMap(result.properties.coordinates);
-                updateSearchBarText(event);
+                updateSearchBar(getSearchBar(event));
+                addLocation(getSearchBar(event), result);
             }}>
                 
                 <p className={styles["search-result"]}>{result.properties.name}</p>
@@ -59,5 +67,7 @@ const SearchResult : React.FC<SearchResultProps> = ({ result }) => {
     );
 
 }
+
+
 
 export default SearchResult;

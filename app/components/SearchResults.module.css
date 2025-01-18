@@ -1,4 +1,7 @@
 .search-results-container {
+    position: absolute;
+    top: 100%;
+
     overflow-x: hidden;
 
     border: 1px solid #383838;
