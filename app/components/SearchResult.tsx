@@ -50,7 +50,7 @@ const SearchResult : React.FC<SearchResultProps> = ({ result }) => {
     return (
         <>
             <div className={styles["search-result-container"]} onClick={(event) => {
-                centerMap(result.properties.coordinates);
+                centerMap(result.geometry.coordinates);
                 updateSearchBar(getSearchBar(event));
                 addLocation(getSearchBar(event), result);
             }}>

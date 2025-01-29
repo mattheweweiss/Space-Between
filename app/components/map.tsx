@@ -5,7 +5,7 @@ import styles from './Map.module.css';
 import SearchBar from './SearchBar';
 
 import { useEffect, useRef } from 'react';
-import mapboxgl, { Map } from 'mapbox-gl';
+import mapboxgl, { LngLatLike, Map } from 'mapbox-gl';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -17,10 +17,10 @@ let map : Map | null = null;
 
 
 // Centers map on selected location
-export function centerMap(coordinates: Object) {
+export function centerMap(coordinates: LngLatLike) {
 
     map.flyTo({
-        center: [coordinates.longitude, coordinates.latitude]
+        center: coordinates
     });
 
 }
