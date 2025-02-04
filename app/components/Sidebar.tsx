@@ -54,16 +54,73 @@ const SidebarComponent : React.FC<SidebarProps> = ({ mapboxAccessToken }) => {
 
 
             // Formats coordinates for API call
-            const coordinates1 : String = locations[`${searchBarId1}`].geometry.coordinates;
+            const coordinates1 : Array<number> = locations[`${searchBarId1}`].geometry.coordinates;
             const formattedCoordinates1 = `${coordinates1[0]},${coordinates1[1]}`;
 
-            const coordinates2 : String = locations[`${searchBarId2}`].geometry.coordinates;
+            const coordinates2 : Array<number> = locations[`${searchBarId2}`].geometry.coordinates;
             const formattedCoordinates2 = `${coordinates2[0]},${coordinates2[1]}`;
+
+
+            // Calculates coordinates for midpoint
+            const midpointCoordinates : Array<number> = [(coordinates1[0] + coordinates2[0]) / 2, (coordinates1[1] + coordinates2[1]) / 2];
+            // Formats midpoint coordinates for API call
+            const formattedMidpointCoordinates = `${midpointCoordinates[0]},${midpointCoordinates[1]}`;
+
+
+
+            // Fetches directions from first input to midpoint
+            fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${formattedCoordinates1};${formattedMidpointCoordinates}?access_token=${mapboxAccessToken}`)
+                .then((response) => {
+                    
+                    if (!response.ok) {
+                        throw new Error('Could not search');
+                    } else {
+                        return response.json();
+                    }
+
+                })
+                .then((data) => {
+                    console.log(data); 
+                });
             
 
-            // Fetches matrix, which contains array of durations, array of distances, and array of sources
+            // Fetches matrix for first input to midpoint, which contains array of durations, array of distances, and array of sources
             // Sources are waypoint objects, which contains waypoint name, location (long, lat), and time zone.
-            fetch(`https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${formattedCoordinates1};${formattedCoordinates2}?access_token=${mapboxAccessToken}`)
+            fetch(`https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${formattedCoordinates1};${formattedMidpointCoordinates}?access_token=${mapboxAccessToken}`)
+                .then((response) => {
+                    
+                    if (!response.ok) {
+                        throw new Error('Could not search');
+                    } else {
+                        return response.json();
+                    }
+
+                })
+                .then((data) => {
+                    console.log(data); 
+                });
+
+
+
+            // Fetches directions from second input to midpoint
+            fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${formattedCoordinates2};${formattedMidpointCoordinates}?access_token=${mapboxAccessToken}`)
+                .then((response) => {
+                    
+                    if (!response.ok) {
+                        throw new Error('Could not search');
+                    } else {
+                        return response.json();
+                    }
+
+                })
+                .then((data) => {
+                    console.log(data); 
+                });
+
+
+            // Fetches matrix for second input to midpoint, which contains array of durations, array of distances, and array of sources
+            // Sources are waypoint objects, which contains waypoint name, location (long, lat), and time zone.
+            fetch(`https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${formattedCoordinates1};${formattedMidpointCoordinates}?access_token=${mapboxAccessToken}`)
                 .then((response) => {
                     
                     if (!response.ok) {
