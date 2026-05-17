@@ -8,9 +8,6 @@ html {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-
-.page-container {
-    display: flex;
-
-    height: 85vh;
+body {
+    margin: 0;
 }

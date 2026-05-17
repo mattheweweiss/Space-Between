@@ -9,14 +9,14 @@
 
 
 .search-bar {
-    border: 1px solid #3a3a3a;
+    border: 1px solid #7c7c7c;
     border-radius: 20px;
     padding: 0.5em;
 
-    background-color: #020202;
+    background-color: #020202a9;
 
     font-size: 1.5em;
-    color: #3a3a3a;
+    color: #7c7c7c;
 }
 
 

@@ -1,11 +1,18 @@
 .search-results-container {
     position: absolute;
     top: 100%;
+    z-index: 1;
 
     overflow-x: hidden;
 
-    border: 1px solid #383838;
+    border: 1px solid #7c7c7c;
     border-radius: 5px;
 
-    color: #383838;
+    background-color: #020202a9;
+
+    color: #7c7c7c;
+}
+
+.hidden {
+    display: none;
 }

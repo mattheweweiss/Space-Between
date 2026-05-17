@@ -2,7 +2,7 @@ import styles from './SearchBar.module.css';
 
 import SearchResults from './SearchResults';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
 
@@ -22,6 +22,13 @@ const SearchBar : React.FC<SearchBarProps> = ({ id, mapboxAccessToken }) => {
     const [results, setResults] = useState([]);
 
 
+    
+    // Resets the search results
+    // Sent to search result children
+    function resetSearchResults() {
+        setResults([]);    
+    }
+
 
     // Makes Mapbox Geocoding API call every time the search value changes
     function updateSearch(update: Object) {
@@ -29,22 +36,29 @@ const SearchBar : React.FC<SearchBarProps> = ({ id, mapboxAccessToken }) => {
         // Gets search
         const search = update.target.value;
 
+        // If search is blank, resets search results
+        if (search.trim() === "") {
+            setResults([]);
+        } else {
         
-        // Fetches data from Mapbox Geocoding API
-        fetch(`https://api.mapbox.com/search/geocode/v6/forward?q=${search}&access_token=${mapboxAccessToken}`)
-            .then((response) => {
-                
-                if (!response.ok) {
-                    throw new Error('Could not search');
-                } else {
-                    return response.json();
-                }
+            // Fetches data from Mapbox Geocoding API
+            fetch(`https://api.mapbox.com/search/geocode/v6/forward?q=${search}&access_token=${mapboxAccessToken}`)
+                .then((response) => {
+                    
+                    if (!response.ok) {
+                        throw new Error('Could not search');
+                    } else {
+                        return response.json();
+                    }
 
-            })
-            // Sets results
-            .then ((data) => {
-                setResults(data.features);
-            });
+                })
+                // Sets results
+                .then ((data) => {
+                    setResults(data.features);
+                    console.log(data.features);
+                });
+        
+        }
 
     };
 
@@ -55,7 +69,7 @@ const SearchBar : React.FC<SearchBarProps> = ({ id, mapboxAccessToken }) => {
             <div className={styles["search-bar-container"]}>
                 <input id={id} className={`search-bar ${styles["search-bar"]}`} onChange={updateSearch.bind(this)} />
                 {
-                    results.length > 0 ? <SearchResults results={results} /> : <></>
+                    results.length > 0 ? <SearchResults results={results} resetSearchResults={resetSearchResults} /> : <></>
                 }
             </div>
         </>

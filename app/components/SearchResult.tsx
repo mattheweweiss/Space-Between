@@ -9,13 +9,14 @@ import { SyntheticEvent, useContext } from 'react';
 
 // Interface for search result component props
 interface SearchResultProps {
-    result: object
+    result: object,
+    resetSearchResults: () => void
 }
 
 
 
 // Creates search result component
-const SearchResult : React.FC<SearchResultProps> = ({ result }) => {
+const SearchResult : React.FC<SearchResultProps> = ({ result, resetSearchResults }) => {
 
 
     // Getting addLocation function via context
@@ -40,7 +41,8 @@ const SearchResult : React.FC<SearchResultProps> = ({ result }) => {
 
     
     // Updates search bar text with selected search
-    function updateSearchBar(searchBar: HTMLInputElement) {
+    function updateSearchBar(event: SyntheticEvent<HTMLElement>) {
+        const searchBar = getSearchBar(event);
         searchBar.value = result.properties.name;
     }
 
@@ -51,8 +53,9 @@ const SearchResult : React.FC<SearchResultProps> = ({ result }) => {
         <>
             <div className={styles["search-result-container"]} onClick={(event) => {
                 centerMap(result.geometry.coordinates);
-                updateSearchBar(getSearchBar(event));
+                updateSearchBar(event);
                 addLocation(getSearchBar(event), result);
+                resetSearchResults();
             }}>
                 
                 <p className={styles["search-result"]}>{result.properties.name}</p>

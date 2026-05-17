@@ -1,8 +1,17 @@
 .sidebar-container {
-    width: min-content;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 
-    margin: 1em;
+    width: min-content;
+    height: 100vh;
+
+    box-sizing: border-box;
+    border-right: 1px solid #3d3d3d;
+    padding: 1em;
+
+    background-color: #000000a9;
 }
 
 
@@ -11,25 +20,25 @@
 
     margin-bottom: 2em;
     padding: 1em;
-    border: 1px solid #3a3a3a;
+    border: 1px solid #7c7c7c;
     border-radius: 5px;
 
     background: none;
 
-    color: #3a3a3a;
+    color: #7c7c7c;
 
     cursor: pointer;
 
-    transition: 300ms ease-in-out 200ms;
+    transition: 300ms ease-in-out;
 }
 
 
 .search-button:hover {
-    background-color: #171717;
+    background-color: #5f5f5f;
 
-    border-color: #4d4d4d;
+    border-color: #aeaeae;
 
-    color: #4d4d4d;
+    color: #aeaeae;
 }
 
 
@@ -41,8 +50,6 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-
-    height: 100%;
 }
 
 
@@ -62,5 +69,5 @@
 
 
 .search-bar-title {
-    color: #3a3a3a;
+    color: #7c7c7c;
 }
